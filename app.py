@@ -1,3 +1,10 @@
+import sys
+from pathlib import Path
+
+# Make src/ importable without `pip install -e .` (Hugging Face Spaces installs
+# requirements before the app code is copied in, so `-e .` can't be used there).
+sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
+
 from openai import OpenAI
 from digital_twin.context import TWIN_SYSTEM_PROMPT
 from digital_twin.tools import tools, handle_tool_calls
